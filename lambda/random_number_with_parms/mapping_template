@@ -1,0 +1,13 @@
+// this mapping template can extract the parameters from the query string below..
+// https://auloqxlzd4.execute-api.us-west-2.amazonaws.com/prod/number?min=1&max=60
+{
+    "min" : "$input.params('min')",
+    "max" : "$input.params('max')" 
+}
+
+
+// this works for testing the query string from either the Lambda side or from API gateway
+{
+  "min": "1",
+  "max": "100"
+}
