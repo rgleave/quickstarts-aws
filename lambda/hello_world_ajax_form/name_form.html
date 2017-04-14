@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html> 
+    
+<head> 
+    // load jquery
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.js"></script> 
+ 
+    <script> 
+        // wait for the DOM to be loaded 
+        $(document).ready(function() { 
+
+            // submit button event
+            $("#my_form").submit(function(event){
+
+                event.preventDefault(); //prevent default action 
+
+                // retrieve action (URL path)
+                var post_url = $(this).attr("action"); //get form action url
+                // form data - URL encoded
+                var form_data = $(this).serialize(); //Encode form elements for submission
+                //alert(form_data);
+                //alert(post_url);
+
+                // AJAX http get event
+                $.get( post_url, form_data, function( response ) {
+                    // load the response message to html form
+                    $("#server-results").html(response.message);
+                    // another way to display the response message below
+                    //document.getElementById("server-results").innerHTML = response.message;
+                });
+            });
+
+        }); 
+    </script> 
+</head> 
+
+<body>
+
+<form action="https://agbz4fa76l.execute-api.us-west-2.amazonaws.com/prod/name" method="POST" id="my_form">
+    First name:<br>
+    <input type="text" name="first_name" value="Mickey">
+    <br>
+    Last name:<br>
+    <input type="text" name="last_name" value="Mouse">
+    <br><br>
+    <input type="submit" value="Submit">
+    <div><h4>Server Response</h4>
+        <div id="server-results">
+            <!-- For server results -->
+        </div>
+    </div>
+</form>
+
+</form>
+</body>
+</html>

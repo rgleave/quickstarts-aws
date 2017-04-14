@@ -1,0 +1,13 @@
+// this mapping template can extract the parameters from the query string below..
+// https://agbz4fa76l.execute-api.us-west-2.amazonaws.com/prod/name?first_name=Roberto&last_name=Gleave
+{
+    "first_name" : "$input.params('first_name')",
+    "last_name" : "$input.params('last_name')" 
+}
+
+
+// this works for testing the query string from either the Lambda side or from API gateway
+{
+  "first_name": "Pancho",
+  "last_name": "Villa"
+}

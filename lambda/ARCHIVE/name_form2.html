@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.js"></script> 
+ 
+    <script> 
+        // wait for the DOM to be loaded 
+        $(document).ready(function() { 
+
+            $("#my_form").submit(function(event){
+                event.preventDefault(); //prevent default action 
+                var post_url = $(this).attr("action"); //get form action url
+                var form_data = $(this).serialize(); //Encode form elements for submission
+                //alert(form_data);
+                //alert(post_url);
+                $.get( post_url, form_data, function( response ) {
+                    $("#server-results").html(response.message);
+                });
+            });
+
+
+        }); 
+    </script> 
+</head> 
+
+<body>
+
+<form action="https://agbz4fa76l.execute-api.us-west-2.amazonaws.com/prod/name" method="POST" id="my_form">
+    First name:<br>
+    <input type="text" name="first_name" value="Mickey">
+    <br>
+    Last name:<br>
+    <input type="text" name="last_name" value="Mouse">
+    <br><br>
+    <input type="submit" value="Submit">
+    <div><h4>Server Response</h4>
+        <div id="server-results">
+            <!-- For server results -->
+        </div>
+    </div>
+</form>
+
+</form>
+</body>
+</html>
